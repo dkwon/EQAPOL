@@ -186,6 +186,6 @@ import_mus = function(path = "EP4_orig", is.rawdata = grepl("^EP((4b?)|5)_orig/?
 	# Mus = Mus_norm[which(apply(Mus[,-(1:2)], 1, function(x) any(x<=0|x>=9))), ]
 	print(lapply(Mus[,1:2], summary))
 	#discard rows that have negative values for scatter channels
-	neg.row = apply(Mus[, !orig.channels %in% peaks.channels], 1, function(x) any(x<0))
+	neg.row = apply(Mus[, setdiff(orig.channels, peaks.channels)], 1, function(x) any(x<0))
 	Mus[!neg.row,]
 }
